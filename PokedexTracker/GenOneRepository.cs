@@ -9,13 +9,13 @@ namespace PokedexTracker
     public class GenOneRepository : IGenOneRepository
     {
         private readonly IDbConnection _conn;
-        public GenOneRepo(IDbConnection conn)
+        public GenOneRepository(IDbConnection conn)
         {
             _conn = conn;
         }
-        public IEnumerable<GenOne> GetAll()
+        public IEnumerable<GenOne> GetAllOne()
         {
-            return _conn.Query<gen_one>("SELECT * FROM gen_one;");
+            return _conn.Query<GenOne>("SELECT * FROM gen_one;");
         }
     }
 }

@@ -8,10 +8,14 @@ namespace PokedexTracker.Models
 {
     public class GenOne
     {
+        public GenOne() { }
+
+
+        public int Dexid { get; set; } 
+        public string Pokemon { get; set; } =string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string Obtainable { get; set; } = string.Empty;
+        public string Method { get; set; } = string.Empty;
     }
-    public int DexID { get; set; }
-    public string pokemon { get; set; }
-    public string type { get; set; }
-    public string obtainable { get; set; }
-    public string method { get; set; }
+   
 }

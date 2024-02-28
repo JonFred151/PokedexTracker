@@ -17,6 +17,11 @@ namespace PokedexTracker
         {
             return _conn.Query<GenOne>("SELECT * FROM gen_one;");
         }
+        public void UpdateGenOne(GenOne genOne)
+        {
+            _conn.Execute("UPDATE gen_one SET isCaught = @isCaught WHERE (DEXID = @DEXID",
+                new {Pokemon = genOne.Pokemon, isCaught = genOne.isCaught, Dexid = genOne.Dexid});
+        }
     }
 }
  

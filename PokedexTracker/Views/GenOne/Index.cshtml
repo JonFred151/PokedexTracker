@@ -3,6 +3,7 @@
 <h2>Pokedex Track Gen 1</h2>
 <table class="table">
     <tr>
+        <th>Caught?</th>
         <th>Dex Number</th>
         <th>Pokemon</th>
         <th>Type</th>
@@ -13,6 +14,7 @@
     @foreach (var GenOne in @Model)
     {
         <tr>
+            <td><input name="IsCaught" type="checkbox" /></td>
             <td>@GenOne.Dexid</td>
             <td>@GenOne.Pokemon</td>
             <td>@GenOne.Type</td>
@@ -21,3 +23,4 @@
         </tr>
     }
 </table>
+

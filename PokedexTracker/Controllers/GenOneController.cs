@@ -14,7 +14,12 @@ namespace PokedexTracker.Controllers
         public IActionResult Index()
         {
             var GenOne = repo.GetAllOne();
-            return View();
+            return View(GenOne);
+        }
+        public IActionResult UpdateGenOne(GenOne genOne) 
+        {
+            repo.UpdateGenOne(genOne);
+            return RedirectToAction("Index");
         }
     }
 }

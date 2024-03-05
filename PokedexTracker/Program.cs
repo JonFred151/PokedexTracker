@@ -18,6 +18,8 @@ builder.Services.AddScoped<IDbConnection>((s) =>
 });
 
 builder.Services.AddTransient<IGenOneRepository, GenOneRepository>();
+builder.Services.AddTransient<IGenTwoRepository, GenTwoRepository>();
+builder.Services.AddTransient<IGenThreeRepository, GenThreeRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

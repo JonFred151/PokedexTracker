@@ -1,0 +1,27 @@
+﻿@model IEnumerable<GenThree>
+
+<h2>Pokedex Track Gen 3</h2>
+<table class="table">
+    <tr>
+        <th>Caught?</th>
+        <th>Dex Number</th>
+        <th>Pokemon</th>
+        <th>Type</th>
+        <th>Obtainable</th>
+        <th>Method</th>
+    </tr>
+
+    @foreach (var GenThree in @Model)
+    {
+        <tr>
+            <td><input name="IsCaught" type="checkbox" /></td>
+            <td>@GenThree.Dexid</td>
+            <td>@GenThree.Pokemon</td>
+            <td>@GenThree.Type</td>
+            <td>@GenThree.Obtainable</td>
+            <td>@GenThree.Method</td>
+        </tr>
+    }
+</table>
+
+

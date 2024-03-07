@@ -7,7 +7,7 @@ namespace PokedexTracker
     public interface IGenThreeRepository
     {
         public IEnumerable<GenThree> GetAllThree();
-
-        //void UpdateGenTwo(GenTwo genTwo);
+        GenThree GetThreeByDexId(int dexid);
+        void UpdateGenThree(GenThree genThree);
     }
 }

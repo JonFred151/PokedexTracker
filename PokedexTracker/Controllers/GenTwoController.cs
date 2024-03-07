@@ -16,10 +16,17 @@ namespace PokedexTracker.Controllers
             var GenTwo = repo.GetAllTwo();
             return View(GenTwo);
         }
-        //public IActionResult UpdateGenOne(GenTwo genTwo)
-        //{
-        //    repo.UpdateGenTwo(genTwo);
-        //    return RedirectToAction("Index");
-        //}
+        public IActionResult UpdateGenTwo(int Dexid, bool isChecked)
+        {
+            var genTwo = repo.GetTwoByDexId(Dexid);
+            if (genTwo != null)
+            {
+                genTwo.isCaught = isChecked ? 1 : 0;
+                repo.UpdateGenTwo(genTwo);
+                return Ok();
+            }
+
+            return NotFound();
+        }
     }
 }

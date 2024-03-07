@@ -14,7 +14,9 @@
     @foreach (var GenThree in @Model)
     {
         <tr>
-            <td><input name="IsCaught" type="checkbox" /></td>
+            <td>
+                <input type="checkbox" id="Capture_@(GenThree.Dexid)" class="capture-checkbox" data-dexid="@(GenThree.Dexid)" @(GenThree.isCaught == 1 ? "checked" : "") />
+            </td>
             <td>@GenThree.Dexid</td>
             <td>@GenThree.Pokemon</td>
             <td>@GenThree.Type</td>
@@ -23,5 +25,41 @@
         </tr>
     }
 </table>
+<script>
+    // Function to set checkbox state based on local storage
+    function setCheckboxState() {
+        document.querySelectorAll('.capture-checkbox').forEach(function (checkbox) {
+            var dexid = checkbox.getAttribute('data-dexid');
+            var isChecked = localStorage.getItem("capture_" + dexid) === "true";
+            checkbox.checked = isChecked;
+        });
+    }
 
+    // Retrieve and set checkbox state from local storage when the page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        setCheckboxState();
+    });
+
+    // Event listener for checkbox changes
+    document.querySelectorAll('.capture-checkbox').forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            var dexid = this.getAttribute('data-dexid');
+            var isChecked = this.checked;
+
+            // Store checkbox state in local storage
+            localStorage.setItem("capture_" + dexid, isChecked);
+
+            // Send AJAX request to update database
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/GenThree/UpdateGenOne', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    // Handle response from the server if needed
+                }
+            };
+            xhr.send(JSON.stringify({ dexid: dexid, isChecked: isChecked }));
+        });
+    });
+</script>
 

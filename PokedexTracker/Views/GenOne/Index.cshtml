@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<GenOne>
 
 <h2>Pokedex Track Gen 1</h2>
+
 <table class="table">
     <tr>
         <th>Caught?</th>
@@ -10,17 +11,56 @@
         <th>Obtainable</th>
         <th>Method</th>
     </tr>
-
+   
     @foreach (var GenOne in @Model)
-    {
+    {     
         <tr>
-            <td><input name="IsCaught" type="checkbox" /></td>
+            <td>
+             <input type="checkbox" id="Capture_@(GenOne.Dexid)" class="capture-checkbox" data-dexid="@(GenOne.Dexid)" @(GenOne.IsCauught == 1 ? "checked" : "") />
+            </td>
             <td>@GenOne.Dexid</td>
-            <td>@GenOne.Pokemon</td>
-            <td>@GenOne.Type</td>
-            <td>@GenOne.Obtainable</td>
-            <td>@GenOne.Method</td>
-        </tr>
+            <td>@GenOne.pokemon</td>
+            <td>@GenOne.type</td>
+            <td>@GenOne.obtainable</td>
+            <td>@GenOne.method</td>
+        </tr>       
     }
 </table>
 
+<script>
+    // Function to set checkbox state based on local storage
+    function setCheckboxState() {
+        document.querySelectorAll('.capture-checkbox').forEach(function (checkbox) {
+            var dexid = checkbox.getAttribute('data-dexid');
+            var isChecked = localStorage.getItem("capture_" + dexid) === "true";
+            checkbox.checked = isChecked;
+        });
+    }
+
+    // Retrieve and set checkbox state from local storage when the page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        setCheckboxState();
+    });
+
+    // Event listener for checkbox changes
+    document.querySelectorAll('.capture-checkbox').forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            var dexid = this.getAttribute('data-dexid');
+            var isChecked = this.checked;
+
+            // Store checkbox state in local storage
+            localStorage.setItem("capture_" + dexid, isChecked);
+
+            // Send AJAX request to update database
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/GenOne/UpdateGenOne', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    // Handle response from the server if needed
+                }
+            };
+            xhr.send(JSON.stringify({ dexid: dexid, isChecked: isChecked }));
+        });
+    });
+</script>

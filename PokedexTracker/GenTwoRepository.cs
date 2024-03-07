@@ -17,10 +17,23 @@ namespace PokedexTracker
         {
             return _conn.Query<GenTwo>("SELECT * FROM gen_two;");
         }
-    //    public void UpdateGenTwo(GenTwo genTwo)
-    //    {
-    //        _conn.Execute("UPDATE gen_two SET isCaught = @isCaught WHERE (DEXID = @DEXID",
-    //            new { Pokemon = genTwo.Pokemon, isCaught = genTwo.isCaught, Dexid = genTwo.Dexid });
-    //    }
+        public GenTwo GetTwoByDexId(int dexid)
+        {
+            return _conn.QueryFirstOrDefault<GenTwo>("SELECT * FROM gen_Two WHERE Dexid = @dexid;", new { dexid = dexid });
+        }
+
+        public void UpdateGenTwo(GenTwo genTwo)
+        {
+            _conn.Execute("UPDATE gen_Two SET pokemon = @Pokemon, type = @Type, obtainable = @Obtainable, method = @Method, isCauught = @isCaught WHERE Dexid = @Dexid;",
+                new
+                {
+                    Dexid = genTwo.Dexid,
+                    Pokemon = genTwo.Pokemon,
+                    Type = genTwo.Type,
+                    Obtainable = genTwo.Obtainable,
+                    Method = genTwo.Method,
+                    isCaught = genTwo.isCaught
+                });
+        }
     }
 }

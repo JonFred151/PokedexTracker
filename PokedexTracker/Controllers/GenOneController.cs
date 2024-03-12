@@ -23,10 +23,21 @@ namespace PokedexTracker.Controllers
             {
                 genOne.IsCauught = isChecked ? 1 : 0;
                 repo.UpdateGenOne(genOne);
-                return Ok();
+                return View(genOne);
             }            
             
             return NotFound();
+        }
+
+        // update for type and method
+        public IActionResult UpdategOne(int dexid)
+        {
+            GenOne one = repo.GetgOne(dexid);
+            if(one == null)
+            {
+                return View("Not Found");
+            }
+            return View(one);
         }
     }
 }

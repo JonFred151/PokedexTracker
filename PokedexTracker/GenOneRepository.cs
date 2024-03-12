@@ -17,9 +17,10 @@ namespace PokedexTracker
         {
             return _conn.Query<GenOne>("SELECT * FROM gen_one;");
         }
+        // Send the check mark data to database
         public GenOne GetOneByDexId(int dexid)
         {
-            return _conn.QueryFirstOrDefault<GenOne>("SELECT * FROM gen_one WHERE Dexid = @dexid;", new { dexid = dexid });
+            return _conn.QuerySingle<GenOne>("SELECT * FROM gen_one WHERE Dexid = @dexid;", new { dexid = dexid });
         }
 
         public void UpdateGenOne(GenOne genOne)
@@ -35,6 +36,18 @@ namespace PokedexTracker
                     Iscaught = genOne.IsCauught
                 });
         }
+        //end of checkmark data being sent to database
+        //Update Gen one Type and Method
+        public void UpdategOne(GenOne genOne)
+        {
+            _conn.Execute("UPDATE gen_one SET type = @Type, method = @Method WHERE Dexid = @Dexid",
+               new {
+                DexID =genOne.Dexid,
+                Type = genOne.type,
+                 Method = genOne.method
+                    });
+        }
+
     }
 }
  

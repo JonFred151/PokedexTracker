@@ -1,0 +1,28 @@
+﻿@model GenOne
+
+
+<h2>Update @Model.pokemon</h2>
+
+
+@using (Html.BeginForm("UpdatePokemonToDatabase", "GenOne", "Post"))
+{
+    <input asp-for="Dexid" type="hidden" value ="@Model.Dexid"/>
+
+    <label asp-for="pokemon" class="control-label">Pokemon</label>
+    <input type="text" name="pokemon" class="form-control" value="@Model.pokemon" />
+
+    <label asp-for="type" class="control-label">Type</label>
+    <input type="text" name="type" class="form-control" value="@Model.type" />
+
+    <label asp-for="obtainable" class="control-label">Obtainable</label>
+    <input type="text" name="obtainable" class="form-control" value="@Model.obtainable" />
+
+    <label asp-for="method" class="control-label">method</label>
+    <input type="text" name="method" class="form-control" value="@Model.method" />
+
+    <input type="submit" value="Update Pokemon" class="btn btn-primary" />
+}
+
+
+
+

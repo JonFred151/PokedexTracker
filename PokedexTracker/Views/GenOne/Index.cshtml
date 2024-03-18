@@ -18,7 +18,7 @@
             <td>
              <input type="checkbox" id="Capture_@(GenOne.Dexid)" class="capture-checkbox" data-dexid="@(GenOne.Dexid)" @(GenOne.IsCauught == 1 ? "checked" : "") />
             </td>
-            <td>@GenOne.Dexid</td>
+            <td><a href=/GenOne/ViewGenOne/@GenOne.Dexid>@GenOne.Dexid</a></td>
             <td>@GenOne.pokemon</td>
             <td>@GenOne.type</td>
             <td>@GenOne.obtainable</td>
@@ -26,6 +26,7 @@
         </tr>       
     }
 </table>
+
 
 <script>
     // Function to set checkbox state based on local storage
@@ -52,15 +53,15 @@
             localStorage.setItem("capture_" + dexid, isChecked);
 
             // Send AJAX request to update database
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/GenOne/UpdateGenOne', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    // Handle response from the server if needed
-                }
-            };
-            xhr.send(JSON.stringify({ dexid: dexid, isChecked: isChecked }));
+            // var xhr = new XMLHttpRequest();
+            // xhr.open('POST', '/GenOne/UpdateGenOne', true);
+            // xhr.setRequestHeader('Content-Type', 'application/json');
+            // xhr.onreadystatechange = function () {
+            //     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            //         Handle response from the server if needed
+            //     }
+            // };
+            // xhr.send(JSON.stringify({ dexid: dexid, isChecked: isChecked }));
         });
     });
 </script>

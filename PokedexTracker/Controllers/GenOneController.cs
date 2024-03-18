@@ -15,29 +15,31 @@ namespace PokedexTracker.Controllers
         {
             var GenOne = repo.GetAllOne();
             return View(GenOne);
+
         }
-        public IActionResult UpdateGenOne(int Dexid, bool isChecked) 
+        public IActionResult ViewGenOne (int id)
         {
-            var genOne = repo.GetOneByDexId(Dexid);
-            if (genOne != null)
+            var ViewGenOne = repo.GetPokemon(id);
+            return View(ViewGenOne);
+        }
+        public IActionResult UpdateGenOne(int id) 
+        {
+            var genOne = repo.GetPokemon(id);
+            if (genOne == null)
             {
-                genOne.IsCauught = isChecked ? 1 : 0;
-                repo.UpdateGenOne(genOne);
-                return View(genOne);
-            }            
-            
-            return NotFound();
+                return NotFound();
+                
+            }
+            repo.UpdateGenOne(genOne);
+            return View(genOne);
+
+        }
+        public IActionResult UpdatePokemonToDatabase(GenOne genOne) 
+        {
+            repo.UpdateGenOne(genOne);
+
+            return RedirectToAction("ViewGenOne", new {id= genOne.Dexid});
         }
 
-        // update for type and method
-        public IActionResult UpdategOne(int dexid)
-        {
-            GenOne one = repo.GetgOne(dexid);
-            if(one == null)
-            {
-                return View("Not Found");
-            }
-            return View(one);
-        }
     }
 }

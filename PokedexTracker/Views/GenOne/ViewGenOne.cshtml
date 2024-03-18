@@ -1,0 +1,29 @@
+﻿@model GenOne
+
+<h3>@Model.pokemon Information</h3>
+
+<table class="table">
+    <tr>
+        
+        <th>Dex Number</th>
+        <th>Pokemon</th>
+        <th>Type</th>
+        <th>Obtainable</th>
+        <th>Method</th>
+    </tr>
+
+    
+        <tr>
+            
+            <td>@Model.Dexid</td>
+            <td>@Model.pokemon</td>
+            <td>@Model.type</td>
+            <td>@Model.obtainable</td>
+            <td>@Model.method</td>
+        </tr>
+    
+</table>
+
+<div style="display: block">
+    <a href="/GenOne/updateGenOne/@Model.Dexid">Update this Pokemon</a>
+</div>

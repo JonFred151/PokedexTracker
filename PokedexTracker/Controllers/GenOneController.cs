@@ -40,6 +40,10 @@ namespace PokedexTracker.Controllers
 
             return RedirectToAction("ViewGenOne", new {id= genOne.Dexid});
         }
-
+        public IActionResult InsertPokemon(GenOne genOne)
+        {
+            repo.InsertGenOne(genOne);
+            return RedirectToAction("Index");
+        }
     }
 }

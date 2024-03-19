@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using PokedexTracker.Models;
+using Google.Protobuf.WellKnownTypes;
 namespace PokedexTracker
 {
     public class GenOneRepository : IGenOneRepository
@@ -36,7 +37,17 @@ namespace PokedexTracker
                     Iscaught = genOne.IsCauught
                 });
         }
-        
+        public void InsertGenOne(GenOne genOne)
+        {
+            _conn.Execute("INSERT INTO gen_one (pokemon, type, obtainable, method) VALUES (@pokemon, @type, @obtainable, @method);",
+                new
+                {
+                    Pokemon = genOne.pokemon,
+                    Type = genOne.type,
+                    Obtainable = genOne.obtainable,
+                    Method = genOne.method,
+                });
+        }
        
        
 

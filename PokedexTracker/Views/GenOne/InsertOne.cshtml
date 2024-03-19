@@ -1,0 +1,22 @@
+﻿@model GenOne
+
+<h2>Add a Pokemon</h2>
+
+@using (Html.BeginForm("InsertGenOne",  "GenOne", "Post"))
+{
+   
+
+    <label asp-for="pokemon" class="control-label">Pokemon</label>
+    <input type="text" name="pokemon" class="form-control" value="" />
+
+    <label asp-for="type" class="control-label">Type</label>
+    <input type="text" name="type" class="form-control" value="" />
+
+    <label asp-for="obtainable" class="control-label">Obtainable</label>
+    <input type="text" name="obtainable" class="form-control" value="" />
+
+    <label asp-for="method" class="control-label">method</label>
+    <input type="text" name="method" class="form-control" value="" />
+
+    <input type="submit" value="Add Pokemon" class="btn btn-primary" />
+}

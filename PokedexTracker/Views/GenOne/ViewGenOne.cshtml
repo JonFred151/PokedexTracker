@@ -27,3 +27,11 @@
 <div style="display: block">
     <a href="/GenOne/updateGenOne/@Model.Dexid">Update this Pokemon</a>
 </div>
+<div style="display: block">
+
+    @using (Html.BeginForm("DeletePokemon", "GenOne", "Post"))
+    {
+        <input type="hidden" asp-for="Dexid" value="@Model.Dexid" />
+        <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this product" />
+    }
+</div>

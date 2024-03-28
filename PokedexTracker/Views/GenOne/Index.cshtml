@@ -2,7 +2,7 @@
 
 <h2>Pokedex Track Gen 1</h2>
 <div style="display:block">
-    <a href="/GenOne/InsertOne/">Add a Pokemon</a>
+    <a href="/GenOne/CreatePokemon/">Add a Pokemon</a>
 </div>
 <table class="table">
     <tr>
@@ -18,7 +18,7 @@
     {     
         <tr>
             <td>
-             <input type="checkbox" id="Capture_@(GenOne.Dexid)" class="capture-checkbox" data-dexid="@(GenOne.Dexid)" @(GenOne.IsCauught == 1 ? "checked" : "") />
+             <input type="checkbox" id="Capture_@(GenOne.Dexid)" class="capture-checkbox" data-dexid="@(GenOne.Dexid)" ) />
             </td>
             <td><a href=/GenOne/ViewGenOne/@GenOne.Dexid>@GenOne.Dexid</a></td>
             <td>@GenOne.pokemon</td>

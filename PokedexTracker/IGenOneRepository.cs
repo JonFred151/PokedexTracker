@@ -10,7 +10,9 @@ namespace PokedexTracker
         public IEnumerable<GenOne> GetAllOne();       
         GenOne GetPokemon(int id);
         void UpdateGenOne(GenOne genOne);
-        public void InsertGenOne(GenOne genOne);
+        public void CreatePokemon(GenOne genOne);
+        public GenOne AssignVaule();
+        public void DeletePokemon(GenOne genOne);
 
         //updating Gen One Type/method to database
        // GenOne GetgOne(int dexid);

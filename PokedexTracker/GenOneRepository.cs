@@ -26,7 +26,7 @@ namespace PokedexTracker
         // update a specific
         public void UpdateGenOne(GenOne genOne)
         {
-            _conn.Execute("UPDATE gen_one SET pokemon = @Pokemon, type = @Type, obtainable = @Obtainable, method = @Method, isCauught = @isCaught WHERE Dexid = @Dexid;",
+            _conn.Execute("UPDATE gen_one SET pokemon = @Pokemon, type = @Type, obtainable = @Obtainable, method = @Method WHERE Dexid = @Dexid;",
                 new
                 {
                     DexID = genOne.Dexid,
@@ -34,18 +34,33 @@ namespace PokedexTracker
                     Type = genOne.type,
                     Obtainable = genOne.obtainable,
                     Method = genOne.method,
-                    Iscaught = genOne.IsCauught
+                    
                 });
         }
-        public void InsertGenOne(GenOne genOne)
+        public GenOne AssignVaule()
+        {
+            var creat = new GenOne();
+            return creat;
+        }
+        public void CreatePokemon(GenOne genOne)
         {
             _conn.Execute("INSERT INTO gen_one (pokemon, type, obtainable, method) VALUES (@pokemon, @type, @obtainable, @method);",
                 new
                 {
+                    
                     Pokemon = genOne.pokemon,
                     Type = genOne.type,
                     Obtainable = genOne.obtainable,
                     Method = genOne.method,
+                   
+                });
+        }
+        public void DeletePokemon  (GenOne genOne)
+        {
+            _conn.Execute("DELETE FROM gen_one WHERE Dexid = @Dexid;",
+                new 
+                {
+                    Dexid = genOne.Dexid 
                 });
         }
        

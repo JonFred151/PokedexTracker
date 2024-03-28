@@ -13,7 +13,7 @@ namespace PokedexTracker.Models
         public string type { get; set; } = string.Empty;
         public string obtainable { get; set; } = string.Empty;
         public string method { get; set; } = string.Empty;
-        public int IsCauught { get; set; }
+        
 
         
 
